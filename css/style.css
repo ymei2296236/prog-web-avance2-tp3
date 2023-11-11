@@ -1,0 +1,160 @@
+/* Généric */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #eee;
+}
+
+main {
+	padding: 2rem 4rem 2rem 4rem;
+}
+
+ul {
+	list-style-type: none;
+	display: flex;
+	gap: 2rem;
+	background-color: white;
+	padding: 2rem 4rem;
+	text-transform: uppercase;
+}
+
+h1 {
+	margin-top: 3rem;
+	margin-bottom: 4rem;
+}
+
+p {
+	font-size: 1.5rem;
+	padding-bottom: 1rem;
+}
+
+a {
+	color: black;
+	text-underline-offset: 8px;
+}
+
+li > a {
+	text-decoration: none;
+	padding: 0.5rem 1rem;
+	border-radius: 5px;
+}
+
+li > a:hover {
+	background-color: #eee;
+}
+
+table {
+	background-color: white;
+	padding: 1rem 2rem;
+}
+
+th {
+	text-align: left;
+}
+
+td {
+	max-width: 25rem;
+	padding: 1rem 2rem;
+}
+
+input:not([type="submit"]),
+textarea,
+select {
+	display: block;
+	margin: 0.5rem 0 1rem 0;
+	width: 18rem;
+	padding: 5px;
+}
+
+/* Éléments */
+
+.container__img {
+	padding-top: 2rem;
+}
+.container__img > img {
+	max-width: 100%;
+}
+.page-error {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: #222;
+}
+
+.page-error > h1 {
+	font-size: 30rem;
+	color: white;
+}
+
+.msg-error {
+	& ul {
+		/* list-style-type: disc; */
+		flex-direction: column;
+		gap: 0.5rem;
+		background-color: #eee;
+		padding: 0;
+		padding-bottom: 2rem;
+		color: red;
+		text-transform: lowercase;
+	}
+}
+
+.h1-moins-espace {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+.boutons {
+	display: flex;
+	margin-top: 2rem;
+}
+
+.bouton {
+	display: flex;
+	align-items: center;
+	margin-right: 1rem;
+	letter-spacing: 0.5px;
+	text-decoration: none;
+	color: white;
+	padding: 0 1rem;
+	height: 2rem;
+	background-color: #222;
+	border: 1.5px solid #eee;
+	border-radius: 10px;
+}
+
+.bouton:hover {
+	background-color: #eee;
+	color: #222;
+	border: 1.5px solid #222;
+}
+
+.bouton--secondaire {
+	color: #222;
+	padding: 0.3rem 1rem;
+	background-color: white;
+	border: 1.5px solid #222;
+}
+
+.bouton--secondaire:hover {
+	background-color: #eee;
+}
+
+.bouton--tertiaire {
+	background-color: #eee;
+	color: #222;
+	margin-top: 0;
+	padding: 0;
+	border: none;
+}
+.bouton--tertiaire:hover {
+	border: none;
+}
+
+.list {
+	padding-right: 1rem;
+}
