@@ -1,0 +1,46 @@
+.boutons {
+	display: flex;
+	margin-top: 2rem;
+}
+
+.bouton {
+	display: flex;
+	align-items: center;
+	margin-right: 1rem;
+	letter-spacing: 0.5px;
+	text-decoration: none;
+	color: white;
+	padding: 0 1rem;
+	height: 2rem;
+	background-color: #222;
+	border: 1.5px solid #eee;
+	border-radius: 10px;
+}
+
+.bouton:hover {
+	background-color: #eee;
+	color: #222;
+	border: 1.5px solid #222;
+}
+
+.bouton--secondaire {
+	color: #222;
+	padding: 0.3rem 1rem;
+	background-color: white;
+	border: 1.5px solid #222;
+}
+
+.bouton--secondaire:hover {
+	background-color: #eee;
+}
+
+.bouton--tertiaire {
+	background-color: #eee;
+	color: #222;
+	margin-top: 0;
+	padding: 0;
+	border: none;
+}
+.bouton--tertiaire:hover {
+	border: none;
+}

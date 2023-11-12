@@ -5,7 +5,17 @@ class Twig{
         $loader = new \Twig\Loader\FilesystemLoader('view');
         $twig = new  \Twig\Environment($loader, array('auto_reload' => true));
         
-        $twig->addGlobal('path', PATH_DIR);        
+        if(isset($_SESSION['fingerPrint']) && $_SESSION['fingerPrint'] === md5($_SERVER['HTTP_USER_AGENT'].$_SERVER['REMOTE_ADDR'])){
+            $guest = false;
+        }
+        else {
+            $guest = true;
+        }
+        
+        $twig->addGlobal('path', PATH_DIR);   
+        $twig->addGlobal('guest', $guest);   
+        $twig->addGlobal('session', $_SESSION);   
+
         echo $twig->render($template, $data);
     }
 

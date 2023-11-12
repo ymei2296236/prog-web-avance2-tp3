@@ -33,5 +33,6 @@ class ControllerLogin extends controller
     {
         session_destroy();
         RequirePage::url('login');
+        exit();
     }
 }

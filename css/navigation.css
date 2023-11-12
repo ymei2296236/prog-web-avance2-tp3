@@ -1,0 +1,35 @@
+.navigation {
+	display: flex;
+	justify-content: space-between;
+	list-style-type: none;
+	display: flex;
+	gap: 2rem;
+	background-color: white;
+	padding: 2rem 4rem;
+
+	& div {
+		display: flex;
+		gap: 1rem;
+		align-items: center;
+	}
+
+	& .navigation__admin {
+		border-left: 1px solid #333;
+		border-right: 1px solid #333;
+	}
+
+	& a {
+		text-decoration: none;
+		padding: 0.5rem 1rem;
+		border-radius: 5px;
+		font-size: 1.2rem;
+	}
+
+	& a:hover {
+		background-color: #eee;
+	}
+
+	& .menu-username {
+		color: blue;
+	}
+}

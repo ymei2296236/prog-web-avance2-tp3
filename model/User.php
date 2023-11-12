@@ -23,7 +23,7 @@ class User extends CRUD
                 session_regenerate_id();
                 $_SESSION['user_id'] = $info_user['id'];
                 $_SESSION['username'] = $info_user['username'];
-                $_SESSION['privilege'] = $info_user['privilege'];
+                $_SESSION['privilege'] = $info_user['privilege_id'];
                 $_SESSION['fingerPrint'] = md5($_SERVER['HTTP_USER_AGENT'].$_SERVER['REMOTE_ADDR']);
 
                 RequirePage::url('role');

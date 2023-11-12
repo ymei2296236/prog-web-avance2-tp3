@@ -1,0 +1,43 @@
+.container__img {
+	padding-top: 2rem;
+}
+.container__img > img {
+	max-width: 100%;
+}
+.page-error {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: #222;
+}
+
+.page-error > h1 {
+	font-size: 30rem;
+	color: white;
+}
+
+.msg-error {
+	& ul {
+		flex-direction: column;
+		gap: 0.5rem;
+		background-color: #eee;
+		padding: 0;
+		padding-bottom: 2rem;
+		color: red;
+		text-transform: lowercase;
+	}
+}
+
+.h1-moins-espace {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+.list {
+	padding-right: 1rem;
+}
+
+.msg-login {
+	font-size: 1rem;
+	margin-top: 2rem;
+}

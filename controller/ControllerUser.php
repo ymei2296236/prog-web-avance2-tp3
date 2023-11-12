@@ -7,6 +7,15 @@ RequirePage::library('Validation');
 
 class ControllerUser extends controller {
 
+
+    public function __construct(){
+        CheckSession::sessionAuth();
+        if($_SESSION['privilege'] != 1) {
+            RequirePage::url('login');
+            exit();
+        }
+    }
+
     public function index(){
         $user = new User;
         $select = $user->select('username');
