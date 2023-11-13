@@ -9,8 +9,9 @@ class ControllerRole extends Controller {
     {
         $role = new Role;
         $select = $role->roleActeurFilm();
+        $vote = $role->checkVote($_SESSION['user_id']);
 
-        return Twig::render('role/index.php', ['roles'=> $select]);
+        return Twig::render('role/index.php', ['roles'=>$select,'vote'=> $vote]);
     }
 
     public function vote()
@@ -20,8 +21,9 @@ class ControllerRole extends Controller {
         $role_acteur_id = $data[1];
 
         $vote = new Role;
-        $insert = $vote->voteRole($data[0], $data[1], $user_id);
-        // RequirePage::url('film/show/'.$insert);
+        $insert = $vote->voteRole($role_film_id, $role_acteur_id, $_SESSION['user_id']);
+        
+        RequirePage::url('role');
     }
 
 }

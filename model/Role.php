@@ -15,6 +15,14 @@ class Role extends CRUD
         
     }
 
+    public function checkVote($user_id)
+    {
+        $sql = "SELECT user_id FROM vote WHERE user_id = $user_id";
+        $stmt = $this->query($sql);
+        $count = $stmt->rowCount();
+        return $count;
+    }
+
     public function voteRole($role_film_id, $role_acteur_id, $user_id)
     {
         $sql = "INSERT INTO vote (role_film_id, role_acteur_id, user_id) VALUES ($role_film_id, $role_acteur_id, $user_id)";

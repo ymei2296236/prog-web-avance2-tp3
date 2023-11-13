@@ -61,6 +61,12 @@ class ControllerUser extends controller {
         RequirePage::url('user');
     }
 
+    public function journal(){
+
+        print_r($_SESSION);
+        // return Twig::render('user/index.php', ['users'=>$select]);    
+
+    }
 
 }
 

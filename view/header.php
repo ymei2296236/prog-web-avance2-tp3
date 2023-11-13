@@ -17,6 +17,7 @@
                     <li><a href="{{path}}film">Films</a></li>
                     <li><a href="{{path}}acteur">Acteurs et actrices</a></li>
                     <li><a href="{{path}}user">Utilisateurs</a></li>
+                    <li><a href="{{path}}user/journal">Journal de bord</a></li>
                 </div>
                 {% endif %}
                 <div class="navigation__account">
