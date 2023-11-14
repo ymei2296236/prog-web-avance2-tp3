@@ -25,11 +25,6 @@ class User extends CRUD
                 $_SESSION['username'] = $info_user['username'];
                 $_SESSION['privilege'] = $info_user['privilege_id'];
                 $_SESSION['fingerPrint'] = md5($_SERVER['HTTP_USER_AGENT'].$_SERVER['REMOTE_ADDR']);
-                // to be decided
-                $_SESSION['uri'] = $_SERVER['REQUEST_URI'];
-                $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
-                $_SESSION['httpUserAgent'] = $_SERVER['HTTP_USER_AGENT'];
-                $_SESSION['time'] = date('Y-m-d H:i:s');
 
                 RequirePage::url('role');
                 exit();

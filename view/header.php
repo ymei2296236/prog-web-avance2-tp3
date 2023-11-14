@@ -11,13 +11,13 @@
                 <div class="navigation__guest">
                     <li><a href="{{path}}role">Rôles classiques</a></li>
                     <li><a href="{{path}}">À propos</a></li>
+                    <li><a href="{{path}}film">Films</a></li>
+                    <li><a href="{{path}}acteur">Acteurs et actrices</a></li>
                 </div>
                 {% if session.privilege == 1 %}
                 <div class="navigation__admin">
-                    <li><a href="{{path}}film">Films</a></li>
-                    <li><a href="{{path}}acteur">Acteurs et actrices</a></li>
                     <li><a href="{{path}}user">Utilisateurs</a></li>
-                    <li><a href="{{path}}user/journal">Journal de bord</a></li>
+                    <li><a href="{{path}}log">Journal de bord</a></li>
                 </div>
                 {% endif %}
                 <div class="navigation__account">

@@ -6,13 +6,25 @@ RequirePage::library('Validation');
 
 class ControllerLogin extends controller
 {
+    
+    
     public function index()
     {
+        if(isset($_SESSION['fingerPrint'])) {
+            session_destroy();
+            exit();
+        }
         Twig::render('auth/index.php');
     }
 
     public function auth()
     {
+        if(isset($_SESSION['fingerPrint'])) {
+            session_destroy();
+            RequirePage::url('login');
+            exit();
+        }
+
         $validation = new Validation;
         extract($_POST);
         $validation->name('Utilisateur')->value($username)->max(50)->required()->pattern('email');

@@ -45,3 +45,8 @@
 .form-vote {
 	margin-top: 2rem;
 }
+
+.th-log,
+.th-user {
+	text-align: center;
+}

@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 define('PATH_DIR', 'http://localhost:8888/prog-web-avance2-tp3/');
 // define('PATH_DIR', 'https://e2296236.webdev.cmaisonneuve.qc.ca/tp-03/');
 require_once __DIR__.'/controller/Controller.php';
@@ -8,6 +9,23 @@ require_once __DIR__.'/library/RequirePage.php';
 require_once __DIR__.'/vendor/autoload.php';
 require_once __DIR__.'/library/Twig.php';
 require_once __DIR__.'/library/CheckSession.php';
+require_once __DIR__.'/model/CRUD.php';
+require_once __DIR__.'/model/Log.php';
+
+// insert into Table log
+$log = [];
+if (isset($_SESSION['username']) && $_SESSION['username'] != '') 
+    $log['nom'] = $_SESSION['username'];
+else 
+    $log['nom'] = 'Guest';
+
+$log['ip'] = $_SERVER['REMOTE_ADDR'];
+$log['url'] = $_SERVER['REQUEST_URI'];
+
+// $newLog = new Log;
+// $insert = $newLog->insert($log);
+
+
 
 $url = isset($_SERVER['PATH_INFO'])? explode('/', ltrim($_SERVER['PATH_INFO'], '/')) : '/';
 // $url = isset($_GET["url"]) ? explode ('/', ltrim($_GET["url"], '/')) : '/';

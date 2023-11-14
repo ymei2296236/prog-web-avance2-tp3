@@ -9,8 +9,10 @@ class ControllerRole extends Controller {
     {
         $role = new Role;
         $select = $role->roleActeurFilm();
-        $vote = $role->checkVote($_SESSION['user_id']);
-
+        if(isset($_SESSION['user_id']) && $_SESSION['user_id'] != '') 
+        {
+            $vote = $role->checkVote($_SESSION['user_id']);
+        }
         return Twig::render('role/index.php', ['roles'=>$select,'vote'=> $vote]);
     }
 

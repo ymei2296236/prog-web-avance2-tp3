@@ -3,9 +3,20 @@
 <body>
     <main>
         <h1>Utilisateurs (euses)</h1>
-        {% for user in users %}
-        <p><small class="list">{{ loop.index }}</small> {{ user.privilege }} : {{ user.username }} </p>
-        {% endfor %}
+        <table>
+                <tr>
+                    <th class="th-user">Id</th>
+                    <th class="th-user">Nom</th>
+                    <th class="th-user">Privilège</th>
+                </tr>
+                {% for user in users %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.privilege }}</td>
+                </tr>
+                {% endfor %}
+            </table>
         <div class="boutons">
             <a class="bouton" href="{{path}}user/create">Ajouter</a>
         </div>
