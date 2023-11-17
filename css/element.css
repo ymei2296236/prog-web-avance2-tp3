@@ -17,14 +17,10 @@
 }
 
 .msg-error {
-	& ul {
-		flex-direction: column;
-		gap: 0.5rem;
-		background-color: #eee;
-		padding: 0;
-		padding-bottom: 2rem;
+	padding-bottom: 1rem;
+	& li {
+		padding-bottom: 0.5rem;
 		color: red;
-		text-transform: lowercase;
 	}
 }
 
@@ -49,4 +45,8 @@
 .th-log,
 .th-user {
 	text-align: center;
+}
+
+.container-img {
+	padding: 1rem 0;
 }

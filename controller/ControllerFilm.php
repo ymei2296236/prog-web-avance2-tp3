@@ -25,27 +25,55 @@ class ControllerFilm extends controller
 
     public function store()
     {
+        // récupère le fichier à téléverser
+        if (isset($_POST['upload']))
+            $_POST['nomImage'] = $_FILES["nomImage"]["name"];
 
         $validation = new Validation;
         extract($_POST);
+ 
         $validation->name('titre')->value($titre)->max(225)->min(1);
         $validation->name('Année de production')->value($anneeProduction)->required();
         $validation->name('Synopsis')->value($synopsis)->max(500)->min(25);
         $validation->name('Durée')->value($duree)->pattern('int')->required();
-        $validation->name('Genre')->value($genre_id)->pattern('int');
+        $validation->name('Genre')->value($genre_id)->pattern('int')->required();
+        $validation->name('Image')->value($nomImage)->maxSize(150000)->required();
+        
+        // valide le fichier à téléverser
+        if ($nomImage) 
+        {
+            $checkImg = getimagesize($_FILES["nomImage"]["tmp_name"]);
+            $imageFileType = strtolower(pathinfo("uploads/" . basename($_POST['nomImage']), PATHINFO_EXTENSION));
 
-        if(!$validation->isSuccess()) {
+            if($checkImg == false)  
+                $msg = "Le fichier téléversé n'est pas une image.";
 
+            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") 
+                $msg = "Seuls les fichiers JPG, JPEG, PNG sont autorisés.";
+
+            if($_FILES["nomImage"]["size"]> 120000)
+                $msg = "Le fichier téléversé dépasse la taille maximale de 120ko.";
+        }
+
+        if(!$validation->isSuccess() || $msg) 
+        {
             $errors = $validation->displayErrors();
             $genres = new Genre; 
             $genres = $genres->select();
-            return Twig::render('film/create.php', ['errors'=> $errors, 'genres'=> $genres, 'film'=> $_POST]);
-            exit();
+            return Twig::render('film/create.php', ['errors'=> $errors, 'genres'=> $genres, 'msg'=> $msg,'film'=> $_POST]);
         } 
-
-        $film = new Film;
-        $insert = $film->insert($_POST);
-        RequirePage::url('film/show/'.$insert);
+        else
+        {
+            // téléverse le fichier au dossier uploads
+            $tempname = $_FILES["nomImage"]["tmp_name"];
+            $folder = "./uploads/" . $_POST['nomImage'];
+            move_uploaded_file($tempname, $folder);
+    
+            // insère le film à la base de données
+            $film = new Film;
+            $insert = $film->insert($_POST);
+            RequirePage::url('film/show/'.$insert);
+        }
     }
 
     public function show($id)

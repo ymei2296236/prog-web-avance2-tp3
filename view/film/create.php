@@ -4,10 +4,16 @@
     <main>
         <a class="bouton bouton--tertiaire" href="{{path}}film/index">< Retourner à la liste de films</a>
         <h1 class="h1-moins-espace">Ajouter un film</h1>
+        <ul class="msg-error">
         {% if errors is defined %}
-        <span class="msg-error">{{ errors | raw }}</span>
+            {{ errors | raw }}
         {% endif %}
-        <form action="{{path}}film/store" method="post" novalidate>
+        {% if msg %}
+            <li>{{ msg }}</li>
+        {% endif %}
+        </ul>
+
+        <form action="{{path}}film/store" method="post" enctype="multipart/form-data" novalidate>
             <label>Titre
                 <textarea name="titre" cols=40 rows=2 >{{ film.titre }}</textarea>
             </label>
@@ -27,8 +33,11 @@
                     {% endfor %}
                 </select>
             </label>
+            <label> Téléverser une image
+                <input type="file" name="nomImage" value="{{ film.nomImage }}"/>
+            </label>
             <div class="boutons" >
-                <input class="bouton" type="submit" value="Enregistrer">
+                <input class="bouton" type="submit" name="upload" value="Enregistrer">
             </div>
         </form>
     </main>

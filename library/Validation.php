@@ -78,6 +78,8 @@
 
         }
 
+
+
         /**
          * Pattern da applicare al riconoscimento
          * dell'espressione regolare
@@ -218,6 +220,19 @@
 
         }
 
+        /** 
+         * added by Mei Yang
+         * Image
+         */
+        public static function is_img($image) {
+            $checkImg = getimagesize($image);
+            if($checkImg == false) {
+                $this->errors[] = "File is not an image.";
+            }
+            return $this;
+        }
+
+
         /**
          * Estensione (formato) del file
          *
@@ -232,6 +247,7 @@
             return $this;
 
         }
+
 
         /**
          * Purifica per prevenire attacchi XSS
@@ -268,11 +284,9 @@
          */
         public function displayErrors(){
 
-            $html = '<ul>';
                 foreach($this->getErrors() as $error){
                     $html .= '<li>'.$error.'</li>';
                 }
-            $html .= '</ul>';
 
             return $html;
 
@@ -297,6 +311,7 @@
             }
 
         }
+
 
         /**
          * Verifica se il valore è

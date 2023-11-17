@@ -7,6 +7,11 @@
         <h1 class="h1-moins-espace">Détails</h1>
         <table>
             <tr>
+                <td colspan=2 class="container-img">
+                <img src="{{path}}uploads/{{ film.nomImage }}" alt="">
+                </td>
+            </tr>
+            <tr>
                 <th>Titre</th>
                 <td>{{ film.titre }}</td>
             </tr>
@@ -34,8 +39,6 @@
                 <input class="bouton bouton--secondaire" type="submit" value="Supprimer">
             </form>
         </div>
-
-
     </main>    
 </body>
 </html>

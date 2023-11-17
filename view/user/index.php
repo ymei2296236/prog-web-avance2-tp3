@@ -11,7 +11,7 @@
                 </tr>
                 {% for user in users %}
                 <tr>
-                    <td>{{ loop.index }}</td>
+                    <td>{{ user.id }}</td>
                     <td>{{ user.username }}</td>
                     <td>{{ user.privilege }}</td>
                 </tr>
