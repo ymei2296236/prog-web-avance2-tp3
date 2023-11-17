@@ -10,9 +10,12 @@
             {% else %}
                 <p>Il n'y a pas de film.</p>
             {% endif %}
+        {% if session.privilege == 1 %}
         <div class="boutons">
             <a class="bouton" href="{{path}}film/create">Ajouter un film</a>
         </div>
+        {% endif %}
+
     </main>
 </body>
 </html>

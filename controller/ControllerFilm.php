@@ -17,6 +17,13 @@ class ControllerFilm extends controller
 
     public function create()
     {
+        CheckSession::sessionAuth();
+        
+        if($_SESSION['privilege'] != 1) 
+        {
+            RequirePage::url('home');
+            exit();
+        }
         $genre = new Genre;
         $selectGenres = $genre->select('nom');
 
@@ -89,6 +96,13 @@ class ControllerFilm extends controller
 
     public function edit($id)
     {
+        CheckSession::sessionAuth();
+        
+        if($_SESSION['privilege'] != 1) 
+        {
+            RequirePage::url('home');
+            exit();
+        }
         $film = new Film;
         $selectFilm = $film->selectId($id);
 
@@ -100,6 +114,13 @@ class ControllerFilm extends controller
 
     public function update()
     {
+        CheckSession::sessionAuth();
+        
+        if($_SESSION['privilege'] != 1) 
+        {
+            RequirePage::url('home');
+            exit();
+        }
         $validation = new Validation;
         extract($_POST);
         $validation->name('titre')->value($titre)->max(225)->min(1);
@@ -124,6 +145,14 @@ class ControllerFilm extends controller
 
     public function destroy()
     {
+        CheckSession::sessionAuth();
+        
+        if($_SESSION['privilege'] != 1) 
+        {
+            RequirePage::url('home');
+            exit();
+        }
+
         $film = new Film;
         $delete = $film->delete($_POST['film_id']);
         RequirePage::url('film/index');

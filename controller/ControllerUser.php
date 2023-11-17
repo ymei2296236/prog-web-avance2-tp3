@@ -8,20 +8,30 @@ RequirePage::library('Validation');
 class ControllerUser extends controller {
 
 
-    public function __construct(){
+    // public function __construct()
+    // {
+    //     CheckSession::sessionAuth();
+    //     if($_SESSION['privilege'] != 1) {
+    //         RequirePage::url('home');
+    //         exit();
+    //     }
+    // }
+
+    public function index()
+    {
         CheckSession::sessionAuth();
+
         if($_SESSION['privilege'] != 1) {
             RequirePage::url('home');
             exit();
         }
-    }
 
-    public function index(){
         $user = new User;
         $select = $user->select('username');
 
         $privilege = new Privilege;
         $i=0;
+
         foreach($select as $user){
              $selectId = $privilege->selectId($user['privilege_id']);
              $select[$i]['privilege']= $selectId['privilege'];
@@ -31,6 +41,12 @@ class ControllerUser extends controller {
     }
 
     public function create() {
+        CheckSession::sessionAuth();
+        
+        if($_SESSION['privilege'] != 1) {
+            RequirePage::url('home');
+            exit();
+        }
         $privilege = new Privilege;
         $select = $privilege->select('privilege');
         return Twig::render('user/create.php', ['privileges'=> $select]);
@@ -61,7 +77,15 @@ class ControllerUser extends controller {
         RequirePage::url('user');
     }
 
+    public function vote()
+    {
 
+        $vote = new User;
+
+        $update = $vote->voteRole($_POST['role_id'], $_SESSION['user_id']);
+        
+        RequirePage::url('role');
+    }
 
 }
 

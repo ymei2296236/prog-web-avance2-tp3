@@ -32,6 +32,7 @@
                 <td>{{ genre.nom }}</td>
             </tr>
         </table>
+        {% if session.privilege == 1 %}
         <div class="boutons">
             <a class="bouton" href="{{path}}film/edit/{{ film.id }}">Modifier</a>
             <form action="{{path}}film/destroy" method="post">
@@ -39,6 +40,8 @@
                 <input class="bouton bouton--secondaire" type="submit" value="Supprimer">
             </form>
         </div>
+        {% endif %}
+
     </main>    
 </body>
 </html>
