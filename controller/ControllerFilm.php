@@ -44,7 +44,8 @@ class ControllerFilm extends controller
         $validation->name('Synopsis')->value($synopsis)->max(500)->min(25);
         $validation->name('Durée')->value($duree)->pattern('int')->required();
         $validation->name('Genre')->value($genre_id)->pattern('int')->required();
-        $validation->name('Image')->value($nomImage)->maxSize(150000)->required();
+        $validation->name('Image')->value($nomImage)->required();
+        $msg = '';
         
         // valide le fichier à téléverser
         if ($nomImage) 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 18, 2023 at 04:01 PM
+-- Generation Time: Nov 18, 2023 at 04:51 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.4.2
 
@@ -81,13 +81,7 @@ CREATE TABLE `genre` (
 INSERT INTO `genre` (`id`, `nom`) VALUES
 (1, 'Science-fiction'),
 (2, 'Aventure'),
-(3, 'Policier'),
-(4, 'Science-fiction'),
-(5, 'Aventure'),
-(6, 'Policier'),
-(7, 'Science-fiction'),
-(8, 'Aventure'),
-(9, 'Policier');
+(3, 'Policier');
 
 -- --------------------------------------------------------
 
@@ -179,10 +173,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `privilege_id`, `role_id`) VAL
 (6, 'user2@gmail.com', '$2y$10$g0O5byIulASPT4G1cI.K0exbxJvK1MpAtJOZDedUZQBoYb4t3ZjhS', 2, 1),
 (7, 'user3@gmail.com', '$2y$10$yWpAFgl/PXx64C3X/vBLGeD/.nWGAeQw6r6EhgVrzjc3YR3EVl2xS', 2, 2),
 (8, 'user4@gmail.com', '$2y$10$pbLS9sqR9auMIdRFVBZT/.Lt0zqRJueSlBNTwnOLmME/j5JJFVoOK', 2, 1),
-(14, 'user5@gmail.com', '$2y$10$hkbEdp7iq.ehwFEp.K0/8OVH.0b46WXfOdOqMaAjQL8iXCtWzlCLm', 2, 5),
-(15, 'user6@gmail.com', '$2y$10$qyZj7eitwnundq5.HumC2OFycyFCOugcaqkfSFKLOeNAEcEFhDwZS', 2, NULL),
-(16, 'user7@gmail.com', '$2y$10$cv8b6eGxIvaQUHCi9ewnOOuQWWtZCrtWdhz/X1/KkRrw9obzdQmg6', 2, NULL),
-(17, 'user8@gmail.com', '$2y$10$zUfusSQhuq9fxuaTkPBcvOVxBrAjntpt7fKrJagjzInZf.RiDbxH6', 2, NULL);
+(14, 'user5@gmail.com', '$2y$10$hkbEdp7iq.ehwFEp.K0/8OVH.0b46WXfOdOqMaAjQL8iXCtWzlCLm', 2, 5);
 
 --
 -- Indexes for dumped tables

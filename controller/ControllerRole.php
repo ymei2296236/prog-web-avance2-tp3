@@ -11,6 +11,7 @@ class ControllerRole extends Controller {
         $role = new Role;
         $vote = $role->countVote();
         $roles = $role->select();
+        $voteRole = 0;
 
         if(isset($_SESSION['user_id']) && $_SESSION['user_id'] != '') 
         {
@@ -18,8 +19,8 @@ class ControllerRole extends Controller {
             $selectUser = $user->checkVote($_SESSION['user_id']);
 
             if($selectUser['role_id']) $voteRole = $selectUser['role_id'];
-            else $voteRole = 0;
         }
+
 
         return Twig::render('role/index.php', ['votes'=> $vote, 'roles' => $roles, 'voteRole' => $voteRole]);
     }

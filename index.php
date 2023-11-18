@@ -22,9 +22,8 @@ else
 $log['ip'] = $_SERVER['REMOTE_ADDR'];
 $log['url'] = $_SERVER['REQUEST_URI'];
 
-// $newLog = new Log;
-// $insert = $newLog->insert($log);
-
+$newLog = new Log;
+$insert = $newLog->insert($log);
 
 
 $url = isset($_SERVER['PATH_INFO'])? explode('/', ltrim($_SERVER['PATH_INFO'], '/')) : '/';

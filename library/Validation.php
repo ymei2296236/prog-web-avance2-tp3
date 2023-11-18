@@ -220,19 +220,6 @@
 
         }
 
-        /** 
-         * added by Mei Yang
-         * Image
-         */
-        public static function is_img($image) {
-            $checkImg = getimagesize($image);
-            if($checkImg == false) {
-                $this->errors[] = "File is not an image.";
-            }
-            return $this;
-        }
-
-
         /**
          * Estensione (formato) del file
          *
@@ -283,13 +270,11 @@
          * @return string $html
          */
         public function displayErrors(){
-
-                foreach($this->getErrors() as $error){
-                    $html .= '<li>'.$error.'</li>';
-                }
-
+            $html ='';
+            foreach($this->getErrors() as $error){
+                $html = $html .'<li>'.$error.'</li>';
+            }
             return $html;
-
         }
 
         /**

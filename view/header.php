@@ -9,7 +9,7 @@
             <nav>
             <ul class="navigation">
                 <div class="navigation__guest">
-                    <li><a href="{{path}}role">Rôles classiques</a></li>
+                    <li><a href="{{path}}role">Rôles</a></li>
                     <li><a href="{{path}}film">Films</a></li>
                     <li><a href="{{path}}acteur">Acteurs et actrices</a></li>
                     <li><a href="{{path}}">À propos</a></li>
