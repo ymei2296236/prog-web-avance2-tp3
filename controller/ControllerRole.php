@@ -9,18 +9,19 @@ class ControllerRole extends Controller {
     public function index() 
     {
         $role = new Role;
-        $select = $role->roleActeurFilm();
+        $vote = $role->countVote();
+        $roles = $role->select();
 
         if(isset($_SESSION['user_id']) && $_SESSION['user_id'] != '') 
         {
             $user = new User;
             $selectUser = $user->checkVote($_SESSION['user_id']);
 
-            if($selectUser['role_id']) $vote = $selectUser['role_id'];
-            else $vote = 0;
-
+            if($selectUser['role_id']) $voteRole = $selectUser['role_id'];
+            else $voteRole = 0;
         }
-        return Twig::render('role/index.php', ['roles'=>$select,'vote'=> $vote]);
+
+        return Twig::render('role/index.php', ['votes'=> $vote, 'roles' => $roles, 'voteRole' => $voteRole]);
     }
 
 }

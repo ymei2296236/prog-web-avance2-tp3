@@ -8,12 +8,40 @@ class Role extends CRUD
 
     public function roleActeurFilm()
     {
-        $sql = "SELECT role.id, film_id, CONCAT(acteur.prenom, ' ', acteur.nom) AS acteur_nom, CONCAT(role.prenom, ' ', role.nom) AS role_nom, titre FROM $this->table INNER JOIN acteur INNER JOIN film ON acteur_id = acteur.id and film_id = film.id";
+        $sql = 
+        "SELECT role.id, film_id, 
+        CONCAT(acteur.prenom, ' ', acteur.nom) AS acteur_nom, 
+        CONCAT(role.prenom, ' ', role.nom) AS role_nom, 
+        titre FROM $this->table 
+        INNER JOIN acteur 
+        INNER JOIN film 
+        ON acteur_id = acteur.id and film_id = film.id";
         
         $stmt = $this->query($sql);
         $roleActeurFilm = $stmt->fetchAll();
         return $roleActeurFilm;
         
+    }
+
+    public function countVote()
+    {
+
+        $sql = 
+        "SELECT role.id, film_id, titre, nomImage,
+        CONCAT(acteur.prenom, ' ', acteur.nom) AS acteur_nom, 
+        CONCAT(role.prenom, ' ', role.nom) AS role_nom, 
+        COUNT(*) AS nombreVote 
+        FROM $this->table 
+        INNER JOIN acteur 
+        INNER JOIN film 
+        INNER JOIN user 
+        ON acteur_id = acteur.id and film_id = film.id and role.id = role_id 
+        GROUP BY role_id 
+        ORDER BY nombreVote DESC";
+
+        $stmt = $this->query($sql);
+        $countVote = $stmt->fetchAll();
+        return $countVote;
     }
 
 
