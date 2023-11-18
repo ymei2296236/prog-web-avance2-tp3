@@ -6,8 +6,9 @@ class User extends CRUD
     protected $primaryKey = 'id';
     protected $fillable = ['id', 'username', 'password', 'privilege_id', 'role_id'];
 
-    public function checkUser($username, $password) {
-
+    // login authentication
+    public function checkUser($username, $password) 
+    {
         $sql = "SELECT * FROM $this->table WHERE username = ?";
         $stmt = $this->prepare($sql);
         $stmt->execute(array($username));
@@ -42,7 +43,7 @@ class User extends CRUD
         }
     }
 
-
+    // valide si l'usager a déjà voté
     public function checkVote($user_id)
     {
         $sql = "SELECT role_id FROM $this->table WHERE id = $user_id";
@@ -50,15 +51,13 @@ class User extends CRUD
         return $stmt->fetch();
     }
 
+    // usager vote
     public function voteRole($role_id, $user_id)
     {
         $sql = "UPDATE $this->table SET role_id = $role_id WHERE id = $user_id";
         $stmt = $this->query($sql);
         return $this->lastInsertId();
-
     }
-
-
 }
 
 ?>

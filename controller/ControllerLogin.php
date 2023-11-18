@@ -6,24 +6,16 @@ RequirePage::library('Validation');
 
 class ControllerLogin extends controller
 {
-    
-    
     public function index()
     {
-        if(isset($_SESSION['fingerPrint'])) {
-            session_destroy();
-            exit();
-        }
+        CheckSession::sessionAuth(TRUE);
+
         Twig::render('auth/index.php');
     }
 
     public function auth()
     {
-        if(isset($_SESSION['fingerPrint'])) {
-            session_destroy();
-            RequirePage::url('login');
-            exit();
-        }
+        CheckSession::sessionAuth(TRUE);
 
         $validation = new Validation;
         extract($_POST);
@@ -45,6 +37,5 @@ class ControllerLogin extends controller
     {
         session_destroy();
         RequirePage::url('login');
-        exit();
     }
 }

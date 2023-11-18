@@ -17,13 +17,9 @@ class ControllerFilm extends controller
 
     public function create()
     {
-        CheckSession::sessionAuth();
-        
-        if($_SESSION['privilege'] != 1) 
-        {
-            RequirePage::url('home');
-            exit();
-        }
+        CheckSession::sessionAuth(FALSE);
+        CheckSession::privilegeAuth();
+
         $genre = new Genre;
         $selectGenres = $genre->select('nom');
 
@@ -32,13 +28,15 @@ class ControllerFilm extends controller
 
     public function store()
     {
-        // récupère le fichier à téléverser
+        CheckSession::sessionAuth(FALSE);
+        CheckSession::privilegeAuth();
+        
+        // si il'y a un fichier à téléverser
         if (isset($_POST['upload']))
             $_POST['nomImage'] = $_FILES["nomImage"]["name"];
 
         $validation = new Validation;
         extract($_POST);
- 
         $validation->name('titre')->value($titre)->max(225)->min(1);
         $validation->name('Année de production')->value($anneeProduction)->required();
         $validation->name('Synopsis')->value($synopsis)->max(500)->min(25);
@@ -47,7 +45,7 @@ class ControllerFilm extends controller
         $validation->name('Image')->value($nomImage)->required();
         $msg = '';
         
-        // valide le fichier à téléverser
+        // validatoin du fichier à téléverser
         if ($nomImage) 
         {
             $checkImg = getimagesize($_FILES["nomImage"]["tmp_name"]);
@@ -97,13 +95,9 @@ class ControllerFilm extends controller
 
     public function edit($id)
     {
-        CheckSession::sessionAuth();
-        
-        if($_SESSION['privilege'] != 1) 
-        {
-            RequirePage::url('home');
-            exit();
-        }
+        CheckSession::sessionAuth(FALSE);
+        CheckSession::privilegeAuth();
+
         $film = new Film;
         $selectFilm = $film->selectId($id);
 
@@ -115,13 +109,9 @@ class ControllerFilm extends controller
 
     public function update()
     {
-        CheckSession::sessionAuth();
-        
-        if($_SESSION['privilege'] != 1) 
-        {
-            RequirePage::url('home');
-            exit();
-        }
+        CheckSession::sessionAuth(FALSE);
+        CheckSession::privilegeAuth();
+
         $validation = new Validation;
         extract($_POST);
         $validation->name('titre')->value($titre)->max(225)->min(1);
@@ -130,8 +120,8 @@ class ControllerFilm extends controller
         $validation->name('Durée')->value($duree)->pattern('int')->required();
         $validation->name('Genre')->value($genre_id)->pattern('int');
 
-        if(!$validation->isSuccess()) {
-
+        if(!$validation->isSuccess()) 
+        {
             $errors = $validation->displayErrors();
             $genres = new Genre; 
             $genres = $genres->select();
@@ -146,13 +136,8 @@ class ControllerFilm extends controller
 
     public function destroy()
     {
-        CheckSession::sessionAuth();
-        
-        if($_SESSION['privilege'] != 1) 
-        {
-            RequirePage::url('home');
-            exit();
-        }
+        CheckSession::sessionAuth(FALSE);
+        CheckSession::privilegeAuth();
 
         $film = new Film;
         $delete = $film->delete($_POST['film_id']);

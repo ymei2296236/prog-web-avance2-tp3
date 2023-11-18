@@ -21,7 +21,6 @@ class ControllerRole extends Controller {
             if($selectUser['role_id']) $voteRole = $selectUser['role_id'];
         }
 
-
         return Twig::render('role/index.php', ['votes'=> $vote, 'roles' => $roles, 'voteRole' => $voteRole]);
     }
 

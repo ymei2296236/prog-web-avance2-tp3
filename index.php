@@ -25,7 +25,6 @@ $log['url'] = $_SERVER['REQUEST_URI'];
 $newLog = new Log;
 $insert = $newLog->insert($log);
 
-
 $url = isset($_SERVER['PATH_INFO'])? explode('/', ltrim($_SERVER['PATH_INFO'], '/')) : '/';
 // $url = isset($_GET["url"]) ? explode ('/', ltrim($_GET["url"], '/')) : '/';
 
@@ -35,24 +34,28 @@ if ($url == '/')
     $controller = new ControllerHome;
     echo $controller->index(); 
 }
+// valide le controlleur
 else
 {
     $requestURL = $url[0];
     $requestURL = ucfirst($requestURL);
     $controllerPath = __DIR__."/controller/Controller".$requestURL.".php";
-
+    // si le controlleur existe
     if(file_exists($controllerPath))
     {
         require_once( $controllerPath);
         $controllerName = 'Controller'.$requestURL;
         $controller = new $controllerName;
-
+        // valide le méthode
         if (isset($url[1]) && $url[1] != '')
         {
             $method = $url[1];
-
+        
+            // si le méthode existe
             if (method_exists($controller, $method))
             {
+                        
+                // valide si il y a une valeur
                 if(isset($url[2])) 
                 {
                     $value = $url[2];
