@@ -63,7 +63,11 @@ class ControllerFilm extends controller
 
         if(!$validation->isSuccess() || $msg) 
         {
-            $errors = $validation->displayErrors();
+            if (!$validation->isSuccess()) 
+                $errors = $validation->displayErrors();
+            else
+                $errors = '';
+            
             $genres = new Genre; 
             $genres = $genres->select();
             return Twig::render('film/create.php', ['errors'=> $errors, 'genres'=> $genres, 'msg'=> $msg,'film'=> $_POST]);

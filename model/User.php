@@ -54,8 +54,9 @@ class User extends CRUD
     // usager vote
     public function voteRole($role_id, $user_id)
     {
-        $sql = "UPDATE $this->table SET role_id = $role_id WHERE id = $user_id";
-        $stmt = $this->query($sql);
+        $sql = "UPDATE $this->table SET role_id = ? WHERE id = ?";
+        $stmt = $this->prepare($sql);
+        $stmt->execute(array($role_id, $user_id));
         return $this->lastInsertId();
     }
 }
