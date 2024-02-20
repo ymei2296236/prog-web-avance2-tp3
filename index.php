@@ -1,9 +1,8 @@
 <?php
 session_start();
 
+define('PATH_DIR', 'http://localhost:8888/filmclub/');
 
-define('PATH_DIR', 'http://localhost:8888/prog-web-avance2-tp3/');
-// define('PATH_DIR', 'https://e2296236.webdev.cmaisonneuve.qc.ca/tp-03/');
 require_once __DIR__.'/controller/Controller.php';
 require_once __DIR__.'/library/RequirePage.php';
 require_once __DIR__.'/vendor/autoload.php';
